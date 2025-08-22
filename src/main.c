@@ -6,7 +6,7 @@
 /*   By: jcesar-s <jcesar-s@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 18:37:12 by jcesar-s          #+#    #+#             */
-/*   Updated: 2025/08/22 15:58:35 by jcesar-s         ###   ########.fr       */
+/*   Updated: 2025/08/22 18:19:20 by jcesar-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,19 +30,38 @@ void	print_stack(t_stack **head)
 	}
 }
 
+t_app	*init_all(int argc, char **argv)
+{
+	t_app	*app;
+
+	app = malloc(sizeof(t_app));
+	if (!app)
+		return (NULL);
+	app->input = argv;
+	app->size = argc;
+	if (argc == 2)
+	{
+		app->input = ft_split(argv[1], ' ');
+		if (!app->input)
+			return (NULL);
+		app->size = count_matrix(app->input);
+	}
+	return (app);
+}
+
 int	main(int argc, char **argv)
 {
 	t_stack	**head;
+	char	**matrix;
 
-	head = malloc(sizeof(t_stack *));
-	if (!head)
+	if (argc == 1)
 		return (1);
-	*head = NULL;
-	if(fill_stack(head, argc, argv))
+	matrix = &argv[1];
+	if (fill_stack(head, argc - 1, matrix))
 	{
 		ft_putendl_fd("Error", 2);
 		free_stack(head);
-		return (2);
+		return (3);
 	}
 	print_stack(head);
 	free_stack(head);

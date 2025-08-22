@@ -6,7 +6,7 @@
 /*   By: jcesar-s <jcesar-s@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/22 14:17:47 by jcesar-s          #+#    #+#             */
-/*   Updated: 2025/08/22 16:44:07 by jcesar-s         ###   ########.fr       */
+/*   Updated: 2025/08/22 18:20:47 by jcesar-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ static int	is_duplicate(t_stack **head, int nbr)
 {
 	t_stack	*tmp;
 
+	if (!*head)
+		return (0);
 	tmp = *head;
 	while (tmp)
 	{
@@ -35,7 +37,7 @@ int	fill_stack(t_stack **head, int argc, char **argv)
 	int		i;
 	long	nbr;
 
-	i = 1;
+	i = 0;
 	while (i < argc)
 	{
 		str = skip_spaces(argv[i]);
@@ -51,6 +53,17 @@ int	fill_stack(t_stack **head, int argc, char **argv)
 		++i;
 	}
 	return (0);
+}
+
+t_stack	**create_stack(void)
+{
+	t_stack	**head;
+
+	head = malloc(sizeof(t_stack *));
+	if (!head)
+		return (NULL);
+	*head = NULL;
+	return (head);
 }
 
 void	free_stack(t_stack **head)

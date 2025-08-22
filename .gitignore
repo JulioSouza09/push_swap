@@ -1,1 +1,3 @@
 objs/*
+includes/libft
+./push_swap

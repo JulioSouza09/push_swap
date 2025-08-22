@@ -6,39 +6,49 @@
 #    By: jcesar-s <jcesar-s@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/18 18:06:00 by jcesar-s          #+#    #+#              #
-#    Updated: 2025/08/18 18:44:07 by jcesar-s         ###   ########.fr        #
+#    Updated: 2025/08/22 16:13:27 by jcesar-s         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
 CC = cc
 CFLAGS = -Wall -Werror -Wextra
-IDIR = include/
+IDIR = includes/
+LFTDIR = $(IDIR)libft/
+LFT = $(LFTDIR)libft.a
 CDIR = src/
 ODIR = objs/
-_SRC = main.c 
+_SRC = main.c stack_utils.c utils.c
 SRC = $(patsubst %, $(CDIR)%, $(_SRC))
 OBJS = $(patsubst %.c, $(ODIR)%.o, $(_SRC))
+_DEPS = push_swap.h
+DEPS = $(patsubst %, $(IDIR)%, $(_DEPS))
 
 .PHONY: all clean fclean re
 
-$(ODIR)%.o: $(CDIR)%.c
+$(ODIR)%.o: $(CDIR)%.c $(DEPS)
 	mkdir -p $(ODIR)
-	$(CC) $(CFLAGS) -c $^ -o $@
+	$(CC) $(CFLAGS) -I $(IDIR) -I $(LFTDIR) -c $< -o $@ 
 
 all: $(NAME)
 
 debug:
 	@echo "$(SRC)"
 	@echo "$(OBJS)"
+	@echo "$(DEPS)"
 
-$(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -o $@
+$(NAME): $(OBJS) $(LFT)
+	$(CC) $(CFLAGS) $(OBJS) -o $@ -L $(LFTDIR) -lft
+
+$(LFT):
+	make -C $(LFTDIR)
 
 clean:
-	rm -rf $(OBJS)
+	make clean -C $(LFTDIR)
+	rm -rf $(ODIR)
 
 fclean: clean
+	make fclean -C $(LFTDIR)
 	rm -f $(NAME)
 
 re: fclean all

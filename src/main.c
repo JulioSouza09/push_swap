@@ -6,7 +6,7 @@
 /*   By: jcesar-s <jcesar-s@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 18:37:12 by jcesar-s          #+#    #+#             */
-/*   Updated: 2025/08/22 18:19:20 by jcesar-s         ###   ########.fr       */
+/*   Updated: 2025/08/23 11:46:12 by jcesar-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,40 +30,21 @@ void	print_stack(t_stack **head)
 	}
 }
 
-t_app	*init_all(int argc, char **argv)
-{
-	t_app	*app;
-
-	app = malloc(sizeof(t_app));
-	if (!app)
-		return (NULL);
-	app->input = argv;
-	app->size = argc;
-	if (argc == 2)
-	{
-		app->input = ft_split(argv[1], ' ');
-		if (!app->input)
-			return (NULL);
-		app->size = count_matrix(app->input);
-	}
-	return (app);
-}
-
 int	main(int argc, char **argv)
 {
-	t_stack	**head;
-	char	**matrix;
+	t_prepr	ini;
 
 	if (argc == 1)
 		return (1);
-	matrix = &argv[1];
-	if (fill_stack(head, argc - 1, matrix))
+	if (prep_input(&ini, argc, argv) || fill_stack(ini.a, ini.len, ini.input))
 	{
 		ft_putendl_fd("Error", 2);
-		free_stack(head);
-		return (3);
+		free_stack(ini.a);
+		return (2);
 	}
-	print_stack(head);
-	free_stack(head);
+	if (ini.is_freeable)
+		free_matrix(ini.input);
+	print_stack(ini.a);
+	free_stack(ini.a);
 	return (0);
 }

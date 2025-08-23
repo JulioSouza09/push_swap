@@ -6,7 +6,7 @@
 /*   By: jcesar-s <jcesar-s@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/22 14:17:47 by jcesar-s          #+#    #+#             */
-/*   Updated: 2025/08/23 11:45:02 by jcesar-s         ###   ########.fr       */
+/*   Updated: 2025/08/23 11:55:49 by jcesar-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	fill_stack(t_stack **head, int argc, char **argv)
 		if (words == 0 || words > 1)
 			return (1);
 		str = skip_spaces(argv[i]);
-		if (!ft_isdigit(*str))
+		if (!ft_isdigit(*str) && *str != 39)
 			return (2);
 		nbr = ft_atol(str);
 		if (nbr < INT_MIN || nbr > INT_MAX || is_duplicate(head, nbr))

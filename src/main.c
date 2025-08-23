@@ -6,12 +6,11 @@
 /*   By: jcesar-s <jcesar-s@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 18:37:12 by jcesar-s          #+#    #+#             */
-/*   Updated: 2025/08/23 11:46:12 by jcesar-s         ###   ########.fr       */
+/*   Updated: 2025/08/23 12:02:36 by jcesar-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include "libft.h"
 
 void	print_stack(t_stack **head)
 {
@@ -40,6 +39,8 @@ int	main(int argc, char **argv)
 	{
 		ft_putendl_fd("Error", 2);
 		free_stack(ini.a);
+		if (ini.is_freeable)
+			free_matrix(ini.input);
 		return (2);
 	}
 	if (ini.is_freeable)

@@ -6,13 +6,12 @@
 /*   By: jcesar-s <jcesar-s@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/22 13:07:43 by jcesar-s          #+#    #+#             */
-/*   Updated: 2025/08/23 11:47:22 by jcesar-s         ###   ########.fr       */
+/*   Updated: 2025/08/23 12:03:25 by jcesar-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
-# define TEST "Header file is working correctly!\n"
 
 # include "libft.h"
 
@@ -31,14 +30,6 @@ typedef struct s_prepr
 	int		len;
 }	t_prepr;
 
-typedef struct s_app
-{
-	t_stack	**a;
-	t_stack	**b;
-	int		size;
-	char	**input;
-}	t_app;
-
 /***** Stack utils *****/
 t_stack	*create_new_node(int content);
 t_stack	**create_stack(void);
@@ -50,7 +41,7 @@ int		fill_stack(t_stack **head, int argc, char **argv);
 char	*skip_spaces(char *str);
 long	ft_atol(char *str);
 int		is_duplicate(t_stack **head, int nbr);
-int	prep_input(t_prepr *vars, int argc, char **argv);
+int		prep_input(t_prepr *vars, int argc, char **argv);
 
 /***** Utils *****/
 void	free_matrix(char **matrix);

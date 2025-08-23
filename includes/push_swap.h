@@ -6,7 +6,7 @@
 /*   By: jcesar-s <jcesar-s@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/22 13:07:43 by jcesar-s          #+#    #+#             */
-/*   Updated: 2025/08/23 12:03:25 by jcesar-s         ###   ########.fr       */
+/*   Updated: 2025/08/23 12:14:31 by jcesar-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ typedef struct s_stack
 typedef struct s_prepr
 {
 	char	**input;
-	t_stack	**a;
 	int		is_freeable;
 	int		len;
 }	t_prepr;

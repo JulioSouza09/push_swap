@@ -6,7 +6,7 @@
 /*   By: jcesar-s <jcesar-s@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 18:37:12 by jcesar-s          #+#    #+#             */
-/*   Updated: 2025/08/23 12:02:36 by jcesar-s         ###   ########.fr       */
+/*   Updated: 2025/08/23 12:14:40 by jcesar-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,20 +32,24 @@ void	print_stack(t_stack **head)
 int	main(int argc, char **argv)
 {
 	t_prepr	ini;
+	t_stack	**a;
 
 	if (argc == 1)
 		return (1);
-	if (prep_input(&ini, argc, argv) || fill_stack(ini.a, ini.len, ini.input))
+	a = create_stack();
+	if (!a)
+		return (1);
+	if (prep_input(&ini, argc, argv) || fill_stack(a, ini.len, ini.input))
 	{
 		ft_putendl_fd("Error", 2);
-		free_stack(ini.a);
+		free_stack(a);
 		if (ini.is_freeable)
 			free_matrix(ini.input);
 		return (2);
 	}
 	if (ini.is_freeable)
 		free_matrix(ini.input);
-	print_stack(ini.a);
-	free_stack(ini.a);
+	print_stack(a);
+	free_stack(a);
 	return (0);
 }

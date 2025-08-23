@@ -6,7 +6,7 @@
 /*   By: jcesar-s <jcesar-s@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/23 11:43:10 by jcesar-s          #+#    #+#             */
-/*   Updated: 2025/08/23 11:47:00 by jcesar-s         ###   ########.fr       */
+/*   Updated: 2025/08/23 12:13:22 by jcesar-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,6 @@ int	prep_input(t_prepr *vars, int argc, char **argv)
 	vars->is_freeable = 0;
 	vars->len = argc - 1;
 	vars->input = &argv[1];
-	vars->a = create_stack();
-	if (!vars->a)
-		return (1);
 	if (argc == 2)
 	{
 		vars->is_freeable = 1;

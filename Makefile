@@ -6,7 +6,7 @@
 #    By: jcesar-s <jcesar-s@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/18 18:06:00 by jcesar-s          #+#    #+#              #
-#    Updated: 2025/08/23 11:43:52 by jcesar-s         ###   ########.fr        #
+#    Updated: 2025/08/24 19:43:43 by jcesar-s         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ LFTDIR = $(IDIR)libft/
 LFT = $(LFTDIR)libft.a
 CDIR = src/
 ODIR = objs/
-_SRC = main.c stack_utils.c parser_utils.c utils.c
+_SRC = main.c stack_creator.c stack_utils.c parser_utils.c utils.c single_ops.c multi_ops.c
 SRC = $(patsubst %, $(CDIR)%, $(_SRC))
 OBJS = $(patsubst %.c, $(ODIR)%.o, $(_SRC))
 _DEPS = push_swap.h

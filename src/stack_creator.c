@@ -6,7 +6,7 @@
 /*   By: jcesar-s <jcesar-s@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 19:34:34 by jcesar-s          #+#    #+#             */
-/*   Updated: 2025/08/25 14:04:01 by jcesar-s         ###   ########.fr       */
+/*   Updated: 2025/08/25 16:28:09 by jcesar-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,13 @@ t_stack	*create_new_node(int content)
 	return (node);
 }
 
+static int	is_valid_char(char c)
+{
+	if (c == 39 || c == '-' || c == '+')
+		return (1);
+	return (0);
+}
+
 int	fill_stack(t_stack **head, int argc, char **argv)
 {
 	t_stack	*node;
@@ -53,7 +60,7 @@ int	fill_stack(t_stack **head, int argc, char **argv)
 		if (words == 0 || words > 1)
 			return (1);
 		str = skip_spaces(argv[i]);
-		if (!ft_isdigit(*str) && *str != 39)
+		if (!ft_isdigit(*str) && !is_valid_char(*str))
 			return (2);
 		nbr = ft_atol(str);
 		if (nbr < INT_MIN || nbr > INT_MAX || is_duplicate(head, nbr))

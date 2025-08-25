@@ -6,7 +6,7 @@
 /*   By: jcesar-s <jcesar-s@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 15:39:27 by jcesar-s          #+#    #+#             */
-/*   Updated: 2025/08/25 15:43:37 by jcesar-s         ###   ########.fr       */
+/*   Updated: 2025/08/25 16:13:25 by jcesar-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_app	*init_all(int argc, char **argv)
 	t_prepr	ini;
 	t_app	*app;
 
-	app = create_app(argc);
+	app = create_app();
 	if (!app)
 		return (NULL);
 	if (prep_input(&ini, argc, argv))
@@ -40,10 +40,11 @@ t_app	*init_all(int argc, char **argv)
 	}
 	if (ini.is_freeable)
 		free_matrix(ini.input);
+	app->a_size = ini.len;
 	return (app);
 }
 
-t_app	*create_app(int a_size)
+t_app	*create_app(void)
 {
 	t_app	*app;
 
@@ -63,6 +64,5 @@ t_app	*create_app(int a_size)
 		free(app);
 		return (NULL);
 	}
-	app->a_size = a_size;
 	return (app);
 }

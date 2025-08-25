@@ -6,7 +6,7 @@
 /*   By: jcesar-s <jcesar-s@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/22 13:07:43 by jcesar-s          #+#    #+#             */
-/*   Updated: 2025/08/25 15:41:07 by jcesar-s         ###   ########.fr       */
+/*   Updated: 2025/08/25 18:54:07 by jcesar-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,10 @@ int		is_duplicate(t_stack **head, int nbr);
 int		prep_input(t_prepr *vars, int argc, char **argv);
 
 /***** Single operations *****/
-void	swap(t_stack **stack);
-void	push(t_stack **dst, t_stack **src);
-void	rotate(t_stack	**stack);
-void	reverse_rotate(t_stack	**stack);
+char	*swap(t_stack **stack, char *op);
+char	*push(t_stack **dst, t_stack **src, char *op);
+char	*rotate(t_stack	**stack, char *op);
+char	*reverse_rotate(t_stack	**stack, char *op);
 
 /***** Multiple operations *****/
 void	ss(t_stack **a, t_stack **b);
@@ -64,10 +64,10 @@ void	rr(t_stack **a, t_stack **b);
 void	rrr(t_stack **a, t_stack **b);
 
 /***** Sorting utils *****/
-void	selection_sort(t_stack **a);
+void	sort_stack(int a_size, t_stack **a, t_stack **b);
 
 /***** Initializer *****/
-t_app	*create_app(int a_size);
+t_app	*create_app(void);
 t_app	*init_all(int argc, char **argv);
 
 /***** Utils *****/

@@ -6,7 +6,7 @@
 /*   By: jcesar-s <jcesar-s@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/23 11:43:10 by jcesar-s          #+#    #+#             */
-/*   Updated: 2025/08/23 12:13:22 by jcesar-s         ###   ########.fr       */
+/*   Updated: 2025/08/25 15:22:28 by jcesar-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,10 @@ int	prep_input(t_prepr *vars, int argc, char **argv)
 			return (2);
 		vars->len = count_matrix(vars->input);
 		if (vars->len == 0)
+		{
+			free_matrix(vars->input);
 			return (3);
+		}
 	}
 	return (0);
 }

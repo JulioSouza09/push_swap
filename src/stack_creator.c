@@ -6,7 +6,7 @@
 /*   By: jcesar-s <jcesar-s@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 19:34:34 by jcesar-s          #+#    #+#             */
-/*   Updated: 2025/08/24 19:36:07 by jcesar-s         ###   ########.fr       */
+/*   Updated: 2025/08/25 14:04:01 by jcesar-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_stack	**create_stack(void)
 {
 	t_stack	**head;
 
-	head = malloc(sizeof(t_stack *));
+	head = ft_calloc(1, sizeof(t_stack *));
 	if (!head)
 		return (NULL);
 	*head = NULL;

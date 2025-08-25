@@ -1,47 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   sorting_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jcesar-s <jcesar-s@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/22 16:03:04 by jcesar-s          #+#    #+#             */
-/*   Updated: 2025/08/25 15:31:41 by jcesar-s         ###   ########.fr       */
+/*   Created: 2025/08/25 12:37:14 by jcesar-s          #+#    #+#             */
+/*   Updated: 2025/08/25 15:43:55 by jcesar-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	free_matrix(char **matrix)
+void	selection_sort(t_stack **a)
 {
-	int	i;
+	t_stack	*i;
+	int		min;
 
-	i = 0;
-	while (matrix[i])
-		free(matrix[i++]);
-	free(matrix[i]);
-	free(matrix);
-}
-
-int	count_matrix(char **matrix)
-{
-	int	i;
-
-	if (!matrix)
-		return (0);
-	i = 0;
-	while (matrix[i])
-		++i;
-	return (i);
-}
-
-void	free_all(t_app *app)
-{
-	if (!app)
+	if (!*a)
 		return ;
-	if (app->a)
-		free_stack(app->a);
-	if (app->b)
-		free_stack(app->b);
-	free(app);
+	i = *a;
+	min = i->content;
+	while (i->next)
+	{
+		if (min > i->content)
+			min = i->content;
+		i = i->next;
+	}
+	ft_printf("min = %d\n", min);
 }

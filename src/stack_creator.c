@@ -6,7 +6,7 @@
 /*   By: jcesar-s <jcesar-s@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 19:34:34 by jcesar-s          #+#    #+#             */
-/*   Updated: 2025/08/25 16:28:09 by jcesar-s         ###   ########.fr       */
+/*   Updated: 2025/08/26 11:16:29 by jcesar-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ int	fill_stack(t_stack **head, int argc, char **argv)
 	long	nbr;
 	int		words;
 
-	i = 0;
-	while (i < argc)
+	i = argc;
+	while (--i >= 0)
 	{
 		words = count_words(argv[i], ' ');
 		if (words == 0 || words > 1)
@@ -69,7 +69,6 @@ int	fill_stack(t_stack **head, int argc, char **argv)
 		if (!node)
 			return (4);
 		push_to_stack(head, node);
-		++i;
 	}
 	return (0);
 }

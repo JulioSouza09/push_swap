@@ -1,44 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   rotate.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jcesar-s <jcesar-s@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/18 18:37:12 by jcesar-s          #+#    #+#             */
-/*   Updated: 2025/08/26 11:18:47 by jcesar-s         ###   ########.fr       */
+/*   Created: 2025/08/26 10:08:36 by jcesar-s          #+#    #+#             */
+/*   Updated: 2025/08/26 10:23:11 by jcesar-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	print_stack(t_stack **head)
+static void	rotate(t_stack	**stack)
 {
+	t_stack	*node;
 	t_stack	*tmp;
 
-	tmp = *head;
-	while (tmp)
-	{
-		ft_printf("content: %d\t", tmp->content);
-		if (tmp->next)
-			ft_printf("next: %d\t\t", tmp->next->content);
-		if (tmp->previous)
-			ft_printf("previous: %d", tmp->previous->content);
-		ft_printf("\n");
+	if (!*stack || !(*stack)->next)
+		return ;
+	node = pop_from_stack(stack);
+	if (!node)
+		return ;
+	tmp = *stack;
+	while (tmp->next)
 		tmp = tmp->next;
-	}
+	tmp->next = node;
 }
 
-int	main(int argc, char **argv)
+void	ra(t_stack **a)
 {
-	t_app	*app;
+	rotate(a);
+	ft_putendl_fd("ra", 1);
+}
 
-	if (argc == 1)
-		return (1);
-	app = init_all(argc, argv);
-	if (!app)
-		return (2);
-	sort_stack(app->a_size, app->a, app->b);
-	free_all(app);
-	return (0);
+void	rb(t_stack **b)
+{
+	rotate(b);
+	ft_putendl_fd("rb", 1);
+}
+
+void	rr(t_stack **a, t_stack **b)
+{
+	rotate(a);
+	rotate(b);
+	ft_putendl_fd("rr", 1);
 }

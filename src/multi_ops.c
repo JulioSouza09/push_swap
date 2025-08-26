@@ -6,18 +6,11 @@
 /*   By: jcesar-s <jcesar-s@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 19:49:45 by jcesar-s          #+#    #+#             */
-/*   Updated: 2025/08/25 18:41:14 by jcesar-s         ###   ########.fr       */
+/*   Updated: 2025/08/26 09:50:06 by jcesar-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	ss(t_stack **a, t_stack **b)
-{
-	swap(a, "sa");
-	swap(b, "sb");
-	ft_putendl_fd("ss", 1);
-}
 
 void	rr(t_stack **a, t_stack **b)
 {

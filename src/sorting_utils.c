@@ -6,7 +6,7 @@
 /*   By: jcesar-s <jcesar-s@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 12:37:14 by jcesar-s          #+#    #+#             */
-/*   Updated: 2025/08/25 19:06:59 by jcesar-s         ###   ########.fr       */
+/*   Updated: 2025/08/26 11:23:35 by jcesar-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ void	sort_two(t_stack **a)
 {
 	if (!a || !*a)
 		return ;
-	if ((*a)->content > (*a)->next->content)
-		ft_putendl_fd(swap(a, "sa"), 1);
+	if ((*a)->content < (*a)->next->content)
+		sa(a);
 }
 
 void	sort_three(t_stack **a)
@@ -41,13 +41,20 @@ void	sort_three(t_stack **a)
 	while (!is_sorted(a))
 	{
 		if ((*a)->content > (*a)->next->content)
-			ft_putendl_fd(swap(a, "sa"), 1);
+			sa(a);
 		if (!is_sorted(a))
-			ft_putendl_fd(reverse_rotate(a, "rra"), 1);
+			rra(a);
 	}
 }
 
-void	execute_single(t_stack **a, t_stack **b, char *op);
+void	exec_single_param(t_stack **stack, void (*op)(t_stack**), int n)
+{
+	int	i;
+
+	i = 0;
+	while (i++ < n)
+		op(stack);
+}
 
 void	sort_four(t_stack **a, t_stack **b);
 

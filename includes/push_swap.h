@@ -6,12 +6,14 @@
 /*   By: jcesar-s <jcesar-s@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/22 13:07:43 by jcesar-s          #+#    #+#             */
-/*   Updated: 2025/08/25 18:54:07 by jcesar-s         ###   ########.fr       */
+/*   Updated: 2025/08/26 10:20:59 by jcesar-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
+# define TRUE 1
+# define FALSE 0
 
 # include "libft.h"
 
@@ -52,11 +54,24 @@ long	ft_atol(char *str);
 int		is_duplicate(t_stack **head, int nbr);
 int		prep_input(t_prepr *vars, int argc, char **argv);
 
-/***** Single operations *****/
-char	*swap(t_stack **stack, char *op);
-char	*push(t_stack **dst, t_stack **src, char *op);
-char	*rotate(t_stack	**stack, char *op);
-char	*reverse_rotate(t_stack	**stack, char *op);
+/***** Swap *****/
+void	sa(t_stack **a);
+void	sb(t_stack **b);
+void	ss(t_stack **a, t_stack **b);
+
+/***** Push *****/
+void	pa(t_stack **a, t_stack **b);
+void	pb(t_stack **b, t_stack **a);
+
+/***** Rotate *****/
+void	ra(t_stack **a);
+void	rb(t_stack **b);
+void	rr(t_stack **a, t_stack **b);
+
+/***** Reverse rotate *****/
+void	rra(t_stack **a);
+void	rrb(t_stack **b);
+void	rrr(t_stack **a, t_stack **b);
 
 /***** Multiple operations *****/
 void	ss(t_stack **a, t_stack **b);

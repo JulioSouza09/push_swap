@@ -2,3 +2,4 @@ objs/*
 includes/libft
 push_swap
 checker_linux
+test_sort_three.sh

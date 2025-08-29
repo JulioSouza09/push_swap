@@ -6,11 +6,12 @@
 /*   By: jcesar-s <jcesar-s@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/23 11:43:10 by jcesar-s          #+#    #+#             */
-/*   Updated: 2025/08/25 15:22:28 by jcesar-s         ###   ########.fr       */
+/*   Updated: 2025/08/27 16:17:30 by jcesar-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#define ATOL_ERROR 2147483650
 
 int	prep_input(t_prepr *vars, int argc, char **argv)
 {
@@ -73,5 +74,7 @@ long	ft_atol(char *str)
 	}
 	while (*str >= '0' && *str <= '9')
 		result = result * 10 + (*str++ - '0');
+	if (*str)
+		return (ATOL_ERROR);
 	return (result * (long)sig);
 }

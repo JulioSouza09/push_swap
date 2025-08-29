@@ -6,7 +6,7 @@
 /*   By: jcesar-s <jcesar-s@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 12:37:14 by jcesar-s          #+#    #+#             */
-/*   Updated: 2025/08/26 11:23:35 by jcesar-s         ###   ########.fr       */
+/*   Updated: 2025/08/28 16:46:09 by jcesar-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,43 +26,51 @@ int		is_sorted(t_stack **a)
 	return (1);
 }
 
-void	sort_two(t_stack **a)
+int	get_max(t_stack **stack)
 {
-	if (!a || !*a)
-		return ;
-	if ((*a)->content < (*a)->next->content)
-		sa(a);
-}
+	t_stack	*tmp;
+	int		max;
 
-void	sort_three(t_stack **a)
-{
-	if (!a || !*a)
-		return ;
-	while (!is_sorted(a))
+	tmp = (*stack)->next;
+	max = tmp->previous->content;
+	while (tmp)
 	{
-		if ((*a)->content > (*a)->next->content)
-			sa(a);
-		if (!is_sorted(a))
-			rra(a);
+		if (max < tmp->content)
+			max = tmp->content;
+		tmp = tmp->next;
 	}
+	return (max);
 }
 
-void	exec_single_param(t_stack **stack, void (*op)(t_stack**), int n)
+int	get_min(t_stack **stack)
 {
-	int	i;
+	t_stack	*tmp;
+	int		min;
 
-	i = 0;
-	while (i++ < n)
-		op(stack);
+	tmp = (*stack)->next;
+	min = tmp->previous->content;
+	while (tmp)
+	{
+		if (min > tmp->content)
+			min = tmp->content;
+		tmp = tmp->next;
+	}
+	return (min);
 }
 
-void	sort_four(t_stack **a, t_stack **b);
-
-void	sort_stack(int a_size, t_stack **a, t_stack **b)
+void	move_to_top(t_stack **stack, int nbr, int size)
 {
-	if (a_size == 2)
-		sort_two(a);
-	if (a_size == 3)
-		sort_three(a);
-	(void)b;
+	int	current;
+
+	current = -1;
+	while (current)
+	{
+		current = get_idx(stack, nbr);
+		if (current == 0)
+			break ;
+		else if (current <= size / 2)
+			ra(stack);
+		else
+			rra(stack);
+	}
 }

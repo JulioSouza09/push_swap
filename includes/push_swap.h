@@ -6,7 +6,7 @@
 /*   By: jcesar-s <jcesar-s@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/22 13:07:43 by jcesar-s          #+#    #+#             */
-/*   Updated: 2025/08/26 10:20:59 by jcesar-s         ###   ########.fr       */
+/*   Updated: 2025/08/28 20:46:38 by jcesar-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,17 @@
 
 # include "libft.h"
 
+typedef struct s_moves
+{
+	int	rn;
+	int	rrn;
+	int	total;
+}	t_moves;
+
 typedef struct s_stack
 {
 	int				content;
+	t_moves			moves;
 	struct s_stack	*next;
 	struct s_stack	*previous;
 }	t_stack;
@@ -36,6 +44,7 @@ typedef struct s_app
 	t_stack	**a;
 	t_stack	**b;
 	int		a_size;
+	int		b_size;
 }	t_app;
 
 /***** Stack utils *****/
@@ -89,5 +98,13 @@ t_app	*init_all(int argc, char **argv);
 void	free_matrix(char **matrix);
 void	free_all(t_app *app);
 int		count_matrix(char **matrix);
+
+int		get_max(t_stack **stack);
+int		get_min(t_stack **stack);
+int		get_idx(t_stack **stack, int nbr);
+int		is_sorted(t_stack **stack);
+int		get_next_idx(t_stack **stack, int nbr);
+void	move_to_top(t_stack **stack, int nbr, int size);
+void	calc_moves_per_node(t_stack **stack, int size);
 
 #endif

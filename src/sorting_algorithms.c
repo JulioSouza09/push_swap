@@ -6,7 +6,7 @@
 /*   By: jcesar-s <jcesar-s@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 18:42:56 by jcesar-s          #+#    #+#             */
-/*   Updated: 2025/08/28 16:46:40 by jcesar-s         ###   ########.fr       */
+/*   Updated: 2025/08/29 11:44:14 by jcesar-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,38 @@ void	sort_three(t_stack **a)
 	}
 }
 
-void	sort_stack(int a_size, t_stack **a, t_stack **b)
+void	sort_bigger(t_app *app)
 {
-	if (a_size == 2)
-		sort_two(a);
-	else if (a_size == 3)
-		sort_three(a);
-	(void)b;
+	t_stack	*cheapest;
+
+	pb(app->b, app->a);
+	pb(app->b, app->a);
+	app->a_size -= 2;
+	app->b_size = 2;
+	while (app->a_size > 3)
+	{
+		calc_all_moves(app);
+		cheapest = find_cheapest(app);
+		if (cheapest->moves.ra)
+			exec_one_param(app, ra, cheapest->moves.ra);
+		if (cheapest->moves.rra)
+			exec_one_param(app, rra, cheapest->moves.rra);
+		if (cheapest->moves.rr)
+			exec_two_param(app, rr, cheapest->moves.rr);
+		if (cheapest->moves.rrr)
+			exec_two_param(app, rrr, cheapest->moves.rrr);
+		pb(app->b, app->a);
+		app->a_size--;
+		app->b_size++;
+	}
+}
+
+void	sort_stack(t_app *app)
+{
+	if (app->a_size == 2)
+		sort_two(app->a);
+	else if (app->a_size == 3)
+		sort_three(app->a);
+	else if (app->a_size > 3)
+		sort_bigger(app);
 }

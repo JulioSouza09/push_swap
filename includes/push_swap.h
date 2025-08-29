@@ -6,7 +6,7 @@
 /*   By: jcesar-s <jcesar-s@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/22 13:07:43 by jcesar-s          #+#    #+#             */
-/*   Updated: 2025/08/28 20:46:38 by jcesar-s         ###   ########.fr       */
+/*   Updated: 2025/08/29 11:38:56 by jcesar-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,14 @@
 
 typedef struct s_moves
 {
+	int	ra;
+	int	rb;
+	int	rra;
+	int	rrb;
 	int	rn;
 	int	rrn;
+	int	rr;
+	int	rrr;
 	int	total;
 }	t_moves;
 
@@ -88,7 +94,7 @@ void	rr(t_stack **a, t_stack **b);
 void	rrr(t_stack **a, t_stack **b);
 
 /***** Sorting utils *****/
-void	sort_stack(int a_size, t_stack **a, t_stack **b);
+void	sort_stack(t_app *app);
 
 /***** Initializer *****/
 t_app	*create_app(void);
@@ -106,5 +112,9 @@ int		is_sorted(t_stack **stack);
 int		get_next_idx(t_stack **stack, int nbr);
 void	move_to_top(t_stack **stack, int nbr, int size);
 void	calc_moves_per_node(t_stack **stack, int size);
+void	calc_all_moves(t_app *app);
+t_stack	*find_cheapest(t_app *app);
+void	exec_one_param(t_app *app, void (*op)(t_stack**a), int nbr);
+void	exec_two_param(t_app *app, void (*op)(t_stack**a,t_stack**b), int nbr);
 
 #endif

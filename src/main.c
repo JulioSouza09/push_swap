@@ -6,7 +6,7 @@
 /*   By: jcesar-s <jcesar-s@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 18:37:12 by jcesar-s          #+#    #+#             */
-/*   Updated: 2025/08/28 19:19:18 by jcesar-s         ###   ########.fr       */
+/*   Updated: 2025/08/29 11:45:59 by jcesar-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,8 @@ int	main(int argc, char **argv)
 	app = init_all(argc, argv);
 	if (!app)
 		return (2);
-	//ft_printf("%d\n", get_next_idx(app->a, 6));
-	calc_moves_per_node(app->a, app->a_size);
-	//sort_stack(app->a_size, app->a, app->b);
-	//move_to_top(app->a, -1, app->a_size);
-	//print_stack(app->a);
+	sort_stack(app);
+	print_stack(app->b);
 	free_all(app);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: jcesar-s <jcesar-s@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 18:40:21 by jcesar-s          #+#    #+#             */
-/*   Updated: 2025/08/28 20:54:51 by jcesar-s         ###   ########.fr       */
+/*   Updated: 2025/08/29 11:32:30 by jcesar-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,22 @@ int	get_idx(t_stack **stack, int nbr)
 		++i;
 	}
 	return (-1);
+}
+
+t_stack	*get_target(t_stack **stack, int nbr)
+{
+	t_stack	*tmp;
+
+	tmp = *stack;
+	while (tmp)
+	{
+		if (nbr == tmp->content)
+		{
+			return (tmp);
+		}
+		tmp = tmp->next;
+	}
+	return (NULL);
 }
 
 int	get_next_idx(t_stack **stack, int nbr)
@@ -76,4 +92,99 @@ void	calc_all_moves(t_app *app)
 {
 	calc_moves_per_node(app->a, app->a_size);
 	calc_moves_per_node(app->b, app->b_size);
+}
+
+int	min(int nbr1, int nbr2)
+{
+	if (nbr1 < nbr2)
+		return (nbr1);
+	return (nbr2);
+}
+
+int	max(int nbr1, int nbr2)
+{
+	if (nbr1 > nbr2)
+		return (nbr1);
+	return (nbr2);
+}
+
+void	find_rr(int nbr_a, int nbr_b, t_moves *moves)
+{
+	int	biggest;
+	int	smallest;
+
+	biggest = max(nbr_a, nbr_b);
+	smallest = min(nbr_a, nbr_b);
+	moves->rr = smallest;
+	if (biggest == nbr_a)
+		moves->ra = biggest - smallest;
+	else
+		moves->rb = biggest - smallest;
+}
+
+void	find_rrr(int nbr_a, int nbr_b, t_moves *moves)
+{
+	int	biggest;
+	int	smallest;
+
+	biggest = max(nbr_a, nbr_b);
+	smallest = min(nbr_a, nbr_b);
+	moves->rrr = smallest;
+	if (biggest == nbr_a)
+		moves->rra = biggest - smallest;
+	else
+		moves->rrb = biggest - smallest;
+}
+
+t_stack	*get_final_target(t_stack **b, int nbr)
+{
+	t_stack	*target;
+	int		min;
+	int		max;
+
+	min = get_min(b);
+	max = get_max(b);
+	if (nbr > max)
+		target = get_target(b, max);
+	else if (nbr < min)
+		target = get_target(b, min);
+	else
+		target = get_target(b, get_next_idx(b, nbr));
+	return (target);
+}
+
+int	calc_total_moves(t_stack *node, t_stack **b_head, t_moves *moves)
+{
+	t_stack	*b;
+
+	b = get_final_target(b_head, node->content);
+	if (!b)
+		return (-1);
+	if (node->moves.rn && b->moves.rn)
+		find_rr(node->moves.rn, b->moves.rn, moves);
+	if (node->moves.rrn && b->moves.rrn)
+		find_rrr(node->moves.rn, b->moves.rrn, moves);
+	moves->total = moves->rn + moves->rr + moves->rrn + moves->rrr;
+	return (moves->total);
+}
+
+t_stack	*find_cheapest(t_app *app)
+{
+	t_stack	*a;
+	t_stack	*cheapest;
+	t_moves	moves;
+	int		candidate;
+
+	a = *app->a;
+	calc_all_moves(app);
+	candidate = calc_total_moves(a, app->b, &moves);
+	a = a->next;
+	while (a)
+	{
+		if (calc_total_moves(a, app->b, &moves) < candidate)
+			cheapest = a;
+		a = a->next;
+	}
+	cheapest->moves = moves;
+	return (cheapest);
 }

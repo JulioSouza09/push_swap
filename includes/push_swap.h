@@ -6,7 +6,7 @@
 /*   By: jcesar-s <jcesar-s@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/22 13:07:43 by jcesar-s          #+#    #+#             */
-/*   Updated: 2025/08/29 14:14:43 by jcesar-s         ###   ########.fr       */
+/*   Updated: 2025/08/30 11:29:43 by jcesar-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,7 @@ int		get_min(t_stack **stack);
 int		get_idx(t_stack **stack, int nbr);
 int		is_sorted(t_stack **stack);
 int		get_next_idx(t_stack **stack, int nbr);
+t_stack	*get_final_target_a(t_stack **a, int nbr);
 void	move_to_top(t_stack **stack, int nbr, int size);
 void	calc_moves_per_node(t_stack **stack, int size);
 void	calc_all_moves(t_app *app);

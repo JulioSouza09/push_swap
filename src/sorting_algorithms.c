@@ -6,7 +6,7 @@
 /*   By: jcesar-s <jcesar-s@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 18:42:56 by jcesar-s          #+#    #+#             */
-/*   Updated: 2025/08/29 20:21:57 by jcesar-s         ###   ########.fr       */
+/*   Updated: 2025/08/30 11:32:14 by jcesar-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ void	sort_bigger(t_app *app)
 {
 	t_stack	*cheapest;
 	int		min;
-	int		max;
 
 	pb(app->b, app->a);
 	pb(app->b, app->a);
@@ -69,20 +68,17 @@ void	sort_bigger(t_app *app)
 		app->b_size++;
 	}
 	sort_three(app->a);
+	t_stack	*target;
 	while (*app->b)
 	{
-		min = get_min(app->a);
-		max = get_max(app->a);
-		if ((*app->b)->content > min && (*app->b)->content < max)
-			move_to_top(app->a, max, app->a_size);
-		else if ((*app->b)->content > min && (*app->b)->content < max)
-			move_to_top(app->a, min, app->a_size);
-		else if ((*app->b)->content < min)
-			move_to_top(app->a, min, app->a_size);
+		target = get_final_target_a(app->a, (*app->b)->content);
+		move_to_top(app->a, target->content, app->a_size);
 		pa(app->a, app->b);
 		app->b_size--;
 		app->a_size++;
 	}
+	min = get_min(app->a);
+	move_to_top(app->a, min, app->a_size);
 }
 
 void	sort_stack(t_app *app)

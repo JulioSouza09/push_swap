@@ -6,7 +6,7 @@
 /*   By: jcesar-s <jcesar-s@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 18:40:21 by jcesar-s          #+#    #+#             */
-/*   Updated: 2025/08/29 19:38:18 by jcesar-s         ###   ########.fr       */
+/*   Updated: 2025/08/30 11:29:26 by jcesar-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,6 +149,37 @@ t_stack	*get_final_target(t_stack **b, int nbr)
 		target = get_target(b, max);
 	else
 		target = get_target(b, get_next_idx(b, nbr));
+	return (target);
+}
+
+int	get_next_min(t_stack **stack, int nbr)
+{
+	t_stack	*tmp;
+	int		new_min;
+
+	tmp = (*stack)->next;
+	new_min = tmp->previous->content;
+	while (tmp)
+	{
+		if ((new_min > tmp->content && tmp->content > nbr) || new_min < nbr)
+			new_min = tmp->content;
+		tmp = tmp->next;
+	}
+	return (new_min);
+}
+
+t_stack	*get_final_target_a(t_stack **a, int nbr)
+{
+	t_stack	*target;
+	int		min;
+	int		max;
+
+	min = get_min(a);
+	max = get_max(a);
+	if (nbr > max || nbr < min)
+		target = get_target(a, min);
+	else
+		target = get_target(a, get_next_min(a, nbr));
 	return (target);
 }
 

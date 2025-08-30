@@ -6,13 +6,13 @@
 /*   By: jcesar-s <jcesar-s@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 12:37:14 by jcesar-s          #+#    #+#             */
-/*   Updated: 2025/08/29 19:44:24 by jcesar-s         ###   ########.fr       */
+/*   Updated: 2025/08/30 20:21:46 by jcesar-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int		is_sorted(t_stack **a)
+int	is_sorted(t_stack **a)
 {
 	t_stack	*tmp;
 
@@ -61,34 +61,17 @@ int	get_min(t_stack **stack)
 void	exec_one_param(t_stack **x, void (*op)(t_stack**x), int nbr)
 {
 	int	i;
-	
+
 	i = 0;
 	while (i++ < nbr)
 		op(x);
 }
 
-void	exec_two_param(t_app *app, void (*op)(t_stack**a,t_stack**b), int nbr)
+void	exec_two_param(t_app *app, void (*op)(t_stack**a, t_stack**b), int nbr)
 {
 	int	i;
-	
+
 	i = 0;
 	while (i++ < nbr)
 		op(app->a, app->b);
-}
-
-void	move_to_top(t_stack **stack, int nbr, int size)
-{
-	int	current;
-
-	current = -1;
-	while (current)
-	{
-		current = get_idx(stack, nbr);
-		if (current == 0)
-			break ;
-		else if (current <= size / 2)
-			ra(stack);
-		else
-			rra(stack);
-	}
 }

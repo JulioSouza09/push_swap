@@ -6,7 +6,7 @@
 /*   By: jcesar-s <jcesar-s@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 18:37:12 by jcesar-s          #+#    #+#             */
-/*   Updated: 2025/08/30 11:36:13 by jcesar-s         ###   ########.fr       */
+/*   Updated: 2025/08/30 20:18:05 by jcesar-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,6 @@ int	main(int argc, char **argv)
 	if (!app)
 		return (2);
 	sort_stack(app);
-	//print_stack(app->a);
-	//ft_printf("\n");
-	//print_stack(app->b);
 	free_all(app);
 	return (0);
 }

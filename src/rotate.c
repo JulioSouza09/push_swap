@@ -6,13 +6,14 @@
 /*   By: jcesar-s <jcesar-s@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 10:08:36 by jcesar-s          #+#    #+#             */
-/*   Updated: 2025/08/29 14:40:28 by jcesar-s         ###   ########.fr       */
+/*   Updated: 2025/08/30 20:39:32 by jcesar-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	rotate(t_stack	**stack)
+static
+void	rotate(t_stack	**stack)
 {
 	t_stack	*node;
 	t_stack	*tmp;

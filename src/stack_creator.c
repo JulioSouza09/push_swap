@@ -6,13 +6,11 @@
 /*   By: jcesar-s <jcesar-s@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 19:34:34 by jcesar-s          #+#    #+#             */
-/*   Updated: 2025/08/26 11:16:29 by jcesar-s         ###   ########.fr       */
+/*   Updated: 2025/08/30 20:41:25 by jcesar-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#define INT_MAX 2147483647
-#define INT_MIN -2147483648
 
 t_stack	**create_stack(void)
 {
@@ -38,7 +36,8 @@ t_stack	*create_new_node(int content)
 	return (node);
 }
 
-static int	is_valid_char(char c)
+static
+int	is_valid_char(char c)
 {
 	if (c == 39 || c == '-' || c == '+')
 		return (1);

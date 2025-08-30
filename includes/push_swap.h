@@ -6,7 +6,7 @@
 /*   By: jcesar-s <jcesar-s@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/22 13:07:43 by jcesar-s          #+#    #+#             */
-/*   Updated: 2025/08/30 11:29:43 by jcesar-s         ###   ########.fr       */
+/*   Updated: 2025/08/30 20:30:05 by jcesar-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # define TRUE 1
 # define FALSE 0
 
+# include <limits.h>
 # include "libft.h"
 
 typedef struct s_moves
@@ -75,8 +76,8 @@ void	sb(t_stack **b);
 void	ss(t_stack **a, t_stack **b);
 
 /***** Push *****/
-void	pa(t_stack **a, t_stack **b);
-void	pb(t_stack **b, t_stack **a);
+void	pa(t_app *stacks);
+void	pb(t_app *stacks);
 
 /***** Rotate *****/
 void	ra(t_stack **a);
@@ -94,28 +95,42 @@ void	rr(t_stack **a, t_stack **b);
 void	rrr(t_stack **a, t_stack **b);
 
 /***** Sorting utils *****/
+int		get_max(t_stack **stack);
+int		get_min(t_stack **stack);
+void	exec_one_param(t_stack **x, void (*op)(t_stack**x), int nbr);
+void	exec_two_param(t_app *app, void (*op)(t_stack**a,t_stack**b), int nbr);
+int		is_sorted(t_stack **stack);
+
+/***** Sorting algorithms *****/
 void	sort_stack(t_app *app);
 
 /***** Initializer *****/
 t_app	*create_app(void);
 t_app	*init_all(int argc, char **argv);
 
+/***** Sort_bigger utils *****/
+void	send_to_b(t_app *app);
+void	send_to_a(t_app *app);
+void	move_to_top(t_stack **stack, int nbr, int size);
+
+/***** Calculate moves *****/
+int		get_idx(t_stack **stack, int nbr);
+void	calc_all_moves(t_app *app);
+
+/***** Get b target *****/
+t_stack	*get_b_target(t_stack **b, int nbr);
+t_stack	*get_a_target(t_stack **a, int nbr);
+t_stack	*get_target(t_stack **stack, int nbr);
+
+/***** Find cheapest *****/
+t_stack	*find_cheapest(t_app *app);
+
 /***** Utils *****/
 void	free_matrix(char **matrix);
 void	free_all(t_app *app);
 int		count_matrix(char **matrix);
+int		max(int nbr1, int nb2);
+int		min(int nbr1, int nb2);
 
-int		get_max(t_stack **stack);
-int		get_min(t_stack **stack);
-int		get_idx(t_stack **stack, int nbr);
-int		is_sorted(t_stack **stack);
-int		get_next_idx(t_stack **stack, int nbr);
-t_stack	*get_final_target_a(t_stack **a, int nbr);
-void	move_to_top(t_stack **stack, int nbr, int size);
-void	calc_moves_per_node(t_stack **stack, int size);
-void	calc_all_moves(t_app *app);
-t_stack	*find_cheapest(t_app *app);
-void	exec_one_param(t_stack **x, void (*op)(t_stack**x), int nbr);
-void	exec_two_param(t_app *app, void (*op)(t_stack**a,t_stack**b), int nbr);
 
 #endif

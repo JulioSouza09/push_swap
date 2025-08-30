@@ -6,13 +6,14 @@
 /*   By: jcesar-s <jcesar-s@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 15:39:27 by jcesar-s          #+#    #+#             */
-/*   Updated: 2025/08/25 16:13:25 by jcesar-s         ###   ########.fr       */
+/*   Updated: 2025/08/30 20:38:37 by jcesar-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	ft_error(t_app	*app)
+static
+void	ft_error(t_app	*app)
 {
 	ft_putendl_fd("Error", 2);
 	free_all(app);

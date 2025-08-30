@@ -6,7 +6,7 @@
 /*   By: jcesar-s <jcesar-s@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 18:42:56 by jcesar-s          #+#    #+#             */
-/*   Updated: 2025/08/29 11:44:14 by jcesar-s         ###   ########.fr       */
+/*   Updated: 2025/08/29 20:21:57 by jcesar-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ void	sort_three(t_stack **a)
 void	sort_bigger(t_app *app)
 {
 	t_stack	*cheapest;
+	int		min;
+	int		max;
 
 	pb(app->b, app->a);
 	pb(app->b, app->a);
@@ -51,9 +53,13 @@ void	sort_bigger(t_app *app)
 		calc_all_moves(app);
 		cheapest = find_cheapest(app);
 		if (cheapest->moves.ra)
-			exec_one_param(app, ra, cheapest->moves.ra);
+			exec_one_param(app->a, ra, cheapest->moves.ra);
 		if (cheapest->moves.rra)
-			exec_one_param(app, rra, cheapest->moves.rra);
+			exec_one_param(app->a, rra, cheapest->moves.rra);
+		if (cheapest->moves.rb)
+			exec_one_param(app->b, rb, cheapest->moves.rb);
+		if (cheapest->moves.rrb)
+			exec_one_param(app->b, rrb, cheapest->moves.rrb);
 		if (cheapest->moves.rr)
 			exec_two_param(app, rr, cheapest->moves.rr);
 		if (cheapest->moves.rrr)
@@ -61,6 +67,21 @@ void	sort_bigger(t_app *app)
 		pb(app->b, app->a);
 		app->a_size--;
 		app->b_size++;
+	}
+	sort_three(app->a);
+	while (*app->b)
+	{
+		min = get_min(app->a);
+		max = get_max(app->a);
+		if ((*app->b)->content > min && (*app->b)->content < max)
+			move_to_top(app->a, max, app->a_size);
+		else if ((*app->b)->content > min && (*app->b)->content < max)
+			move_to_top(app->a, min, app->a_size);
+		else if ((*app->b)->content < min)
+			move_to_top(app->a, min, app->a_size);
+		pa(app->a, app->b);
+		app->b_size--;
+		app->a_size++;
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: jcesar-s <jcesar-s@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 10:08:36 by jcesar-s          #+#    #+#             */
-/*   Updated: 2025/08/26 10:23:11 by jcesar-s         ###   ########.fr       */
+/*   Updated: 2025/08/29 14:40:28 by jcesar-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ static void	rotate(t_stack	**stack)
 	while (tmp->next)
 		tmp = tmp->next;
 	tmp->next = node;
+	node->previous = tmp;
 }
 
 void	ra(t_stack **a)

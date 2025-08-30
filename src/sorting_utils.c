@@ -6,7 +6,7 @@
 /*   By: jcesar-s <jcesar-s@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 12:37:14 by jcesar-s          #+#    #+#             */
-/*   Updated: 2025/08/29 11:37:57 by jcesar-s         ###   ########.fr       */
+/*   Updated: 2025/08/29 19:44:24 by jcesar-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,13 +58,13 @@ int	get_min(t_stack **stack)
 	return (min);
 }
 
-void	exec_one_param(t_app *app, void (*op)(t_stack**a), int nbr)
+void	exec_one_param(t_stack **x, void (*op)(t_stack**x), int nbr)
 {
 	int	i;
 	
 	i = 0;
 	while (i++ < nbr)
-		op(app->a);
+		op(x);
 }
 
 void	exec_two_param(t_app *app, void (*op)(t_stack**a,t_stack**b), int nbr)

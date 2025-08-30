@@ -6,7 +6,7 @@
 /*   By: jcesar-s <jcesar-s@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 18:40:21 by jcesar-s          #+#    #+#             */
-/*   Updated: 2025/08/29 11:32:30 by jcesar-s         ###   ########.fr       */
+/*   Updated: 2025/08/29 19:38:18 by jcesar-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ void	calc_moves_per_node(t_stack **stack, int size)
 	tmp = *stack;
 	while (tmp)
 	{
+		ft_memset(&tmp->moves, 0, sizeof(t_moves));
 		tmp->moves = count_operations(stack, tmp->content, size);
 		tmp = tmp->next;
 	}
@@ -144,10 +145,8 @@ t_stack	*get_final_target(t_stack **b, int nbr)
 
 	min = get_min(b);
 	max = get_max(b);
-	if (nbr > max)
+	if (nbr > max || nbr < min)
 		target = get_target(b, max);
-	else if (nbr < min)
-		target = get_target(b, min);
 	else
 		target = get_target(b, get_next_idx(b, nbr));
 	return (target);
@@ -162,9 +161,16 @@ int	calc_total_moves(t_stack *node, t_stack **b_head, t_moves *moves)
 		return (-1);
 	if (node->moves.rn && b->moves.rn)
 		find_rr(node->moves.rn, b->moves.rn, moves);
-	if (node->moves.rrn && b->moves.rrn)
-		find_rrr(node->moves.rn, b->moves.rrn, moves);
-	moves->total = moves->rn + moves->rr + moves->rrn + moves->rrr;
+	else if (node->moves.rrn && b->moves.rrn)
+		find_rrr(node->moves.rrn, b->moves.rrn, moves);
+	else
+	{
+		moves->ra = node->moves.rn;
+		moves->rra = node->moves.rrn;
+		moves->rb = b->moves.rn;
+		moves->rrb = b->moves.rrn;
+	}
+	moves->total = moves->ra + moves->rb + moves->rrb + moves->rr + moves->rra + moves->rrr;
 	return (moves->total);
 }
 
@@ -176,15 +182,20 @@ t_stack	*find_cheapest(t_app *app)
 	int		candidate;
 
 	a = *app->a;
-	calc_all_moves(app);
+	ft_memset(&moves, 0, sizeof(t_moves));
 	candidate = calc_total_moves(a, app->b, &moves);
+	cheapest = a;
+	cheapest->moves = moves;
 	a = a->next;
 	while (a)
 	{
+		ft_memset(&moves, 0, sizeof(t_moves));
 		if (calc_total_moves(a, app->b, &moves) < candidate)
+		{
 			cheapest = a;
+			cheapest->moves = moves;
+		}
 		a = a->next;
 	}
-	cheapest->moves = moves;
 	return (cheapest);
 }

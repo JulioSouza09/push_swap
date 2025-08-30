@@ -6,7 +6,7 @@
 /*   By: jcesar-s <jcesar-s@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/23 11:43:10 by jcesar-s          #+#    #+#             */
-/*   Updated: 2025/08/27 16:17:30 by jcesar-s         ###   ########.fr       */
+/*   Updated: 2025/08/30 16:22:41 by jcesar-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,8 @@ long	ft_atol(char *str)
 			sig *= -1;
 		++str;
 	}
+	if (!*str)
+		return (ATOL_ERROR);
 	while (*str >= '0' && *str <= '9')
 		result = result * 10 + (*str++ - '0');
 	if (*str)

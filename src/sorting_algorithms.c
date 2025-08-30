@@ -6,7 +6,7 @@
 /*   By: jcesar-s <jcesar-s@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 18:42:56 by jcesar-s          #+#    #+#             */
-/*   Updated: 2025/08/30 11:32:14 by jcesar-s         ###   ########.fr       */
+/*   Updated: 2025/08/30 16:27:14 by jcesar-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	sort_two(t_stack **a)
 {
 	if (!a || !*a)
 		return ;
-	if ((*a)->content < (*a)->next->content)
+	if ((*a)->content > (*a)->next->content)
 		sa(a);
 }
 
@@ -29,13 +29,10 @@ void	sort_three(t_stack **a)
 	max = get_max(a);
 	if (max == (*a)->content)
 		ra(a);
-	while (!is_sorted(a))
-	{
-		if ((*a)->content > (*a)->next->content)
-			sa(a);
-		if (!is_sorted(a))
-			rra(a);
-	}
+	else if (max == (*a)->next->content)
+		rra(a);
+	if ((*a)->content > (*a)->next->content)
+		sa(a);
 }
 
 void	sort_bigger(t_app *app)

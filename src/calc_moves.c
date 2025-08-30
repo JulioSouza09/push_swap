@@ -6,7 +6,7 @@
 /*   By: jcesar-s <jcesar-s@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 18:40:21 by jcesar-s          #+#    #+#             */
-/*   Updated: 2025/08/30 11:29:26 by jcesar-s         ###   ########.fr       */
+/*   Updated: 2025/08/30 13:38:08 by jcesar-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -211,6 +211,7 @@ t_stack	*find_cheapest(t_app *app)
 	t_stack	*cheapest;
 	t_moves	moves;
 	int		candidate;
+	int		new_candidate;
 
 	a = *app->a;
 	ft_memset(&moves, 0, sizeof(t_moves));
@@ -221,10 +222,12 @@ t_stack	*find_cheapest(t_app *app)
 	while (a)
 	{
 		ft_memset(&moves, 0, sizeof(t_moves));
-		if (calc_total_moves(a, app->b, &moves) < candidate)
+		new_candidate = calc_total_moves(a, app->b, &moves);
+		if (new_candidate < candidate)
 		{
 			cheapest = a;
 			cheapest->moves = moves;
+			candidate = new_candidate;
 		}
 		a = a->next;
 	}

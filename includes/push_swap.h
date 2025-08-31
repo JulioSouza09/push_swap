@@ -6,7 +6,7 @@
 /*   By: jcesar-s <jcesar-s@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/22 13:07:43 by jcesar-s          #+#    #+#             */
-/*   Updated: 2025/08/30 20:30:05 by jcesar-s         ###   ########.fr       */
+/*   Updated: 2025/08/31 15:43:15 by jcesar-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ typedef struct s_moves
 	int	rb;
 	int	rra;
 	int	rrb;
-	int	rn;
-	int	rrn;
 	int	rr;
 	int	rrr;
+	int	rn;
+	int	rrn;
 	int	total;
 }	t_moves;
 
@@ -89,11 +89,6 @@ void	rra(t_stack **a);
 void	rrb(t_stack **b);
 void	rrr(t_stack **a, t_stack **b);
 
-/***** Multiple operations *****/
-void	ss(t_stack **a, t_stack **b);
-void	rr(t_stack **a, t_stack **b);
-void	rrr(t_stack **a, t_stack **b);
-
 /***** Sorting utils *****/
 int		get_max(t_stack **stack);
 int		get_min(t_stack **stack);
@@ -117,7 +112,7 @@ void	move_to_top(t_stack **stack, int nbr, int size);
 int		get_idx(t_stack **stack, int nbr);
 void	calc_all_moves(t_app *app);
 
-/***** Get b target *****/
+/***** Get targets *****/
 t_stack	*get_b_target(t_stack **b, int nbr);
 t_stack	*get_a_target(t_stack **a, int nbr);
 t_stack	*get_target(t_stack **stack, int nbr);
@@ -131,6 +126,5 @@ void	free_all(t_app *app);
 int		count_matrix(char **matrix);
 int		max(int nbr1, int nb2);
 int		min(int nbr1, int nb2);
-
 
 #endif

@@ -6,14 +6,14 @@
 #    By: jcesar-s <jcesar-s@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/18 18:06:00 by jcesar-s          #+#    #+#              #
-#    Updated: 2025/08/30 20:10:52 by jcesar-s         ###   ########.fr        #
+#    Updated: 2025/08/31 18:13:51 by jcesar-s         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
 CC = cc
 CFLAGS = -Wall -Werror -Wextra -g
-IDIR = includes/
+IDIR = include/
 LFTDIR = $(IDIR)libft/
 LFT = $(LFTDIR)libft.a
 CDIR = src/

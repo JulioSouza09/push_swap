@@ -1,4 +1,4 @@
 objs/*
-includes/libft/*
+include/libft/*
 push_swap
 checker_linux

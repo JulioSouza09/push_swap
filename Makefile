@@ -6,7 +6,7 @@
 #    By: jcesar-s <jcesar-s@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/18 18:06:00 by jcesar-s          #+#    #+#              #
-#    Updated: 2025/08/31 18:13:51 by jcesar-s         ###   ########.fr        #
+#    Updated: 2025/09/02 13:22:03 by jcesar-s         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,12 +24,10 @@ _SRC += calc_moves.c sorting_algorithms.c sort_bigger_utils.c get_targets.c
 _SRC += find_cheapest.c
 SRC = $(patsubst %, $(CDIR)%, $(_SRC))
 OBJS = $(patsubst %.c, $(ODIR)%.o, $(_SRC))
-_DEPS = push_swap.h
-DEPS = $(patsubst %, $(IDIR)%, $(_DEPS))
 
 .PHONY: all clean fclean re
 
-$(ODIR)%.o: $(CDIR)%.c $(DEPS)
+$(ODIR)%.o: $(CDIR)%.c
 	mkdir -p $(ODIR)
 	$(CC) $(CFLAGS) -I $(IDIR) -I $(LFTDIR) -c $< -o $@ 
 
@@ -38,7 +36,6 @@ all: $(NAME)
 debug:
 	@echo "$(SRC)"
 	@echo "$(OBJS)"
-	@echo "$(DEPS)"
 
 $(NAME): $(OBJS) $(LFT)
 	$(CC) $(CFLAGS) $(OBJS) -o $@ -L $(LFTDIR) -lft

@@ -6,7 +6,7 @@
 /*   By: jcesar-s <jcesar-s@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 18:42:56 by jcesar-s          #+#    #+#             */
-/*   Updated: 2025/08/30 20:41:03 by jcesar-s         ###   ########.fr       */
+/*   Updated: 2025/09/03 12:15:58 by jcesar-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ void	sort_bigger(t_app *app)
 
 void	sort_stack(t_app *app)
 {
+	if (is_sorted(app->a))
+		return ;
 	if (app->a_size == 2)
 		sort_two(app->a);
 	else if (app->a_size == 3)

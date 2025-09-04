@@ -6,7 +6,7 @@
 #    By: jcesar-s <jcesar-s@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/18 18:06:00 by jcesar-s          #+#    #+#              #
-#    Updated: 2025/09/02 13:22:03 by jcesar-s         ###   ########.fr        #
+#    Updated: 2025/09/04 11:44:10 by jcesar-s         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,10 +32,6 @@ $(ODIR)%.o: $(CDIR)%.c
 	$(CC) $(CFLAGS) -I $(IDIR) -I $(LFTDIR) -c $< -o $@ 
 
 all: $(NAME)
-
-debug:
-	@echo "$(SRC)"
-	@echo "$(OBJS)"
 
 $(NAME): $(OBJS) $(LFT)
 	$(CC) $(CFLAGS) $(OBJS) -o $@ -L $(LFTDIR) -lft

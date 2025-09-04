@@ -6,7 +6,7 @@
 /*   By: jcesar-s <jcesar-s@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/22 13:07:43 by jcesar-s          #+#    #+#             */
-/*   Updated: 2025/08/31 15:43:15 by jcesar-s         ###   ########.fr       */
+/*   Updated: 2025/09/04 12:01:16 by jcesar-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # define FALSE 0
 
 # include <limits.h>
+# include <stdlib.h>
+# include <unistd.h>
 # include "libft.h"
 
 typedef struct s_moves
@@ -92,9 +94,9 @@ void	rrr(t_stack **a, t_stack **b);
 /***** Sorting utils *****/
 int		get_max(t_stack **stack);
 int		get_min(t_stack **stack);
-void	exec_one_param(t_stack **x, void (*op)(t_stack**x), int nbr);
-void	exec_two_param(t_app *app, void (*op)(t_stack**a,t_stack**b), int nbr);
 int		is_sorted(t_stack **stack);
+void	exec_one_p(t_stack **x, void (*op)(t_stack**x), int nbr);
+void	exec_two_p(t_app *app, void (*op)(t_stack **a, t_stack **b), int nbr);
 
 /***** Sorting algorithms *****/
 void	sort_stack(t_app *app);
